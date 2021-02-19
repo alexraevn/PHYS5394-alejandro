@@ -14,7 +14,7 @@ phi3 = pi/4;
 
 % Generate time vector
 samplFreq = 1024; % Hz
-maxFreq = 0.5*samplFreq % Same as 1.0 = half the sample rate required by fir1
+maxFreq = 0.5*samplFreq; % Same as 1.0 = half the sample rate required by fir1
 nSamples = 2*samplFreq;
 timeVec = (0:(nSamples-1))/samplFreq;
 
@@ -121,9 +121,9 @@ plot(timeVec, s);
 plot(timeVec, filtS3);
 title('Highpass cutoff 250 Hz (s3)');
 
-hand = axes(fig, 'visible', 'off');
+hand = axes(fig2, 'visible', 'off');
 hand.Title.Visible='on';
 hand.XLabel.Visible='on';
 hand.YLabel.Visible='on';
 ylabel(hand, 'Magnitude');
-xlabel(hand, 'Frequency (Hz)');
+xlabel(hand, 'Time');

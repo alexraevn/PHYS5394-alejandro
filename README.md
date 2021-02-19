@@ -17,4 +17,8 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - testgensgsig.m - Perform FFT of sg signal and plot periodogram.
   - filtering.m    - Generate 3 sinusoids at different frequencies, add them, filter each, then perform FFT and compare plots of original vs filtered signal periodograms.
 
+* **lab6** -2/19/2021
+  - gensgsig.m     - No changes
+  - testgensgsig.m - Added spectrogram computation and plot. Window length and overlap chosen at 0.08 and 0.07 s to better display frequency spread.
+
 Contact alejandro.reyes01@utrgv.edu
