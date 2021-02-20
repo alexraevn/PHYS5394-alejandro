@@ -6,17 +6,8 @@ freq0 = 9;
 phi0 = pi/2.0;
 A = 9;
 
-%% Determination of maximum frequency between sine and gaussian signals
-% The frequency function of the gaussian or a(t) function is
-% |1/(stDev*sqrt(2*pi)) * exp(t-time0)|
-% maxFreq(t) of a(t) occurs at t=time0, time0 ∈ [0,1]
-gausMaxFreq = 1/(stDev*sqrt(2*pi));
-
-% The frequency of the sinusoid function is constant
-sineMaxFreq = freq0;
-
-% Max frequency is the maximum value between sine and gaussian frequencies
-maxFreq = max(gausMaxFreq, sineMaxFreq);
+% The maximum frequency is equal to the constant frequency of the sinusoid
+maxFreq = freq0;
 
 % Package signal parameters into a cell array to feed into genPlotSig function
 argsVector = {time0, stDev, freq0, phi0, A, maxFreq};
