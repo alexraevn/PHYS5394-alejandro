@@ -21,4 +21,9 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - gensgsig.m     - No changes
   - testgensgsig.m - Added spectrogram computation and plot. Window length and overlap chosen at 0.08 and 0.07 s to better display frequency spread.
 
+* **lab7** -2/23/2021
+  - customrand.m     - Generate a pseudo-random number between two open boundaries from uniform distribution.
+  - customrandn.m    - Gemerate a pseudo-random number by custom standard deviation and mean from normal distribution.
+  - testcustomprng.m - Generate the two probability distribution functions and plot the distribution and histogram.
+
 Contact alejandro.reyes01@utrgv.edu
