@@ -26,4 +26,7 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - customrandn.m    - Gemerate a pseudo-random number by custom standard deviation and mean from normal distribution.
   - testcustomprng.m - Generate the two probability distribution functions and plot the distribution and histogram.
 
+* **lab8** -3/10/2021
+  - whiteningDemo.m  - Reads testData.txt, estimates PSD of signal free segment, designs whitening filter and applies it to entire data. Plots before/after data and spectrograms.
+
 Contact alejandro.reyes01@utrgv.edu
