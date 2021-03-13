@@ -20,7 +20,7 @@ colGaus      = dataVals(1:5*sampFreq);
 %% Design Whitening Filter
 % FIR2 filter for target T(f)=sqrt(PSD) where PSD is the estimated PSD of first 5 seconds
 fltrOrdr = 500;
-b = fir2(fltrOrdr,f/(sampFreq/2),sqrt(pxx));
+b = fir2(fltrOrdr,f/(sampFreq/2),1./sqrt(pxx));
 % Whiten testData
 whitenedData = sqrt(sampFreq)*fftfilt(b,dataVals); % Normalized to two sided PSD
 
