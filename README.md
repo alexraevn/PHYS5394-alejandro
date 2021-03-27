@@ -29,4 +29,7 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
 * **lab8** -3/10/2021
   - whiteningDemo.m  - Reads testData.txt, estimates PSD of signal free segment, designs whitening filter and applies it to entire data. Plots before/after data and spectrograms.
 
+* **lab8_2** -3/26/2021
+  - simLIGONoise.m   - Reads iLIGOSensitivity.txt to generate characterization filter, pass it WGN noise, and estimate the resulting PSD.
+
 Contact alejandro.reyes01@utrgv.edu
