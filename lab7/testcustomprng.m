@@ -29,8 +29,11 @@ nPDF = (1/[sqrt(2*pi)*s])*exp(-[x2-m]^2/[2*s^2]);
 
 % Two figures with 2 subplots each
 figure;
-subplot(2,1,1), fplot(uPDF), title('Uniform PDF, limits(-2,1)'), xlabel('Trial'), ylabel('Value');
-subplot(2,1,2), histogram(uniformTrials, 'Normalization', 'pdf'), xlim(uLimits), title(sprintf('Histogram of %d Trials', trials)), xlabel('Value'), ylabel('Probability');
+hold on;
+histogram(uniformTrials, 'Normalization', 'pdf'), xlim(uLimits), title(sprintf('Histogram of %d Trials', trials)), xlabel('Value'), ylabel('Probability');
+fplot(uPDF), title('Uniform PDF, limits(-2,1)'), xlabel('Trial'), ylabel('Value');
 figure;
-subplot(2,1,1), fplot(nPDF, nLimits), title('Normal PDF, Mean=1.5, Std=2.0'), xlabel('Trial'), ylabel('Value');
-subplot(2,1,2), histogram(normalTrials, 'Normalization', 'pdf'), xlim(nLimits), title(sprintf('Histogram of %d Trials',trials)), xlabel('Value'), ylabel('Probability');
+hold on;
+histogram(normalTrials, 'Normalization', 'pdf'), xlim(nLimits), title(sprintf('Histogram of %d Trials',trials)), xlabel('Value'), ylabel('Probability');
+fplot(nPDF, nLimits), title('Normal PDF, Mean=1.5, Std=2.0'), xlabel('Trial'), ylabel('Value');
+
