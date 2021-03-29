@@ -12,9 +12,10 @@ highCutoff = 700; %Hz
 % LIGOSen(42,1) = 49.79 Hz, we'll use index 42 for the low cutoff of 50 Hz
 lowSen = LIGOSen(42,2); %S value around f = lowCutoff
 
-for i = 1:41
-    LIGOSen(i,2) = lowSen;
-end
+% for i = 1:41
+%     LIGOSen(i,2) = lowSen;
+% end
+LIGOSen(1:41,2) = lowSen;
 
 % LIGOSen(70:1) = 717.95 Hz, index 70 for high cutoff of 700 Hz
 highSen = LIGOSen(70,2);
@@ -41,14 +42,14 @@ LIGOSen(85,1) = 3000; %Hz
 
 %% Generate WGNoise realization and pass through LIGO PSD filter
 % Number of samples = sampFreq * 'time' length. Using 2 seconds:
-nSamples = 2*sampFreq;
+nSamples = 10*sampFreq;
 % Generate the Gaussian noise vector
 noise = randn(1,nSamples);
 
 % Design FIR filter
 freqVals  = LIGOSen(:,1);
 psdVals   = LIGOSen(:,2);
-filtrOrdr = 600; % Using 600 order and a similar pwelch window consistently reduces the jaggedness
+fltrOrdr = 600; % Using 600 order and a similar pwelch window consistently reduces the jaggedness
                  % at the frequencies of interest.
 
 b = fir2(fltrOrdr,freqVals/(sampFreq/2),sqrt(psdVals));
@@ -57,10 +58,13 @@ noiseLIGOReal = sqrt(sampFreq)*fftfilt(b,noise);
 
 %% Estimate the PSD using pwelch
 
-[pxx, f] = pwelch(noiseLIGOReal, 600, [], [], sampFreq);
+[pxx, f] = pwelch(noiseLIGOReal, sampFreq, [], [], sampFreq);
 
 figure;
-plot(f/1000,pxx);
+loglog(f,pxx);
 title('Estimated PSD (pwelch) of LIGO Noise Realization');
 xlabel('Frequency (kHz)');
 ylabel('PSD');
+
+figure;
+plot((0:(nSamples-1))/sampFreq,    noiseLIGOReal);
