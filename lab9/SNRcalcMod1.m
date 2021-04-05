@@ -12,8 +12,6 @@ nSamples = 2048;
 sampFreq = 1024;
 timeVec = (0:(nSamples-1))/sampFreq;
 
- 
-
 %% Use noisePSD inline function to generate the PSD vector 
 % We will use the noise PSD used in colGaussNoiseDemo.m but add a constant
 % to remove the parts that are zero. (Exercise: Prove that if the noise PSD
@@ -57,17 +55,17 @@ for lp = 1:nH0Data
     llrH1(lp) = innerprodpsd(dataVec,sigVec,sampFreq,psdPosFreq);
 end
 %%
-% Signal to noise ratio estimate
-% estSNR = (mean(llrH1)-mean(llrH0))/std(llrH0);
-% 
-% figure;
-% histogram(llrH0);
-% hold on;
-% histogram(llrH1);
-% xlabel('LLR');
-% ylabel('Counts');
-% legend('H_0','H_1');
-% title(['Estimated SNR = ',num2str(estSNR)]);
+%Signal to noise ratio estimate
+estSNR = (mean(llrH1)-mean(llrH0))/std(llrH0);
+
+figure;
+histogram(llrH0);
+hold on;
+histogram(llrH1);
+xlabel('LLR');
+ylabel('Counts');
+legend('H_0','H_1');
+title(['Estimated SNR = ',num2str(estSNR)]);
 
 %% Plot data and signal realizations
 figure;
@@ -106,7 +104,7 @@ ovrlp  = 0.07; %s
 % Convert to integer number of samples
 winLenSampl = floor(winLen*sampFreq);
 ovrlpSampl  = floor(ovrlp*sampFreq);
-[S,F,T]     = spectrogram(dataVec, winLenSamp, ovrlpSampl, [], sampFreq);
+[S,F,T]     = spectrogram(dataVec, winLenSampl, ovrlpSampl, [], sampFreq);
 
 % Plot spectrogram
 figure;

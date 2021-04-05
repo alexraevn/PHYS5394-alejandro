@@ -56,20 +56,15 @@ posFreq = (0:(kNyq-1))*(1/dataLen); % Positive DFT frequencies
 
 psdVals = interp1(LIGOSen(:,1),LIGOSen(:,2),posFreq);
 
-% Generate the PSD vector to be used in the normalization. Should be
-% generated for all positive DFT frequencies.
-% psdFreq = LIGOSen(:,1);
-% psdVals = LIGOSen(:,2);
-
-figure;
-loglog(posFreq,psdVals);
+% figure;
+% loglog(posFreq,psdVals);
 % axis([0,LIGOSen(1:end,1),0,LIGOSen(1:end,2)]);
 % xlabel('Frequency (Hz)');
 % ylabel('PSD ((data unit)^2/Hz)');
 
 %% Calculation of the norm
 % Norm of signal squared is inner product of signal with itself
-normSigSqrd = innerprodpsd(sigVec,sigVec,sampFreq,psdPosFreq);
+normSigSqrd = innerprodpsd(sigVec,sigVec,sampFreq,psdVals);
 % Normalize signal to specified SNR
 sigVec = snr*sigVec/sqrt(normSigSqrd);
 
@@ -103,20 +98,51 @@ ylabel('Counts');
 legend('H_0','H_1');
 title(['Estimated SNR = ',num2str(estSNR)]);
 
-%%
-% A noise realization
-figure;
-plot(timeVec,noiseVec);
-xlabel('Time (sec)');
-ylabel('Noise');
-%%
-% A data realization
+%% Plot data and signal realizations
 figure;
 plot(timeVec,dataVec);
 hold on;
 plot(timeVec,sigVec);
+title('Data and Signal Realizations');
 xlabel('Time (sec)');
 ylabel('Data');
+
+%% Generate and plot the periodogram of signal and data
+
+% FFT of the data
+fftData = fft(dataVec);
+% Take positive fourier frequencies
+fftData = fftData(1:kNyq);
+% FFT of signal (positive frequencies)
+fftSig = fft(sigVec);
+fftSig = fftSig(1:kNyq);
+
+% Plot periodogram of signal
+figure;
+plot(posFreq, abs(fftData));
+hold on;
+plot(posFreq, abs(fftSig));
+title('Periodogram of Signal and Data');
+xlabel('Frequency (Hz)');
+ylabel('Periodogram');
+
+%% Generate and plot the spectrogram
+
+% Set the window length and overlap
+winLen = 0.09; %s
+ovrlp  = 0.07; %s
+
+% Convert to integer number of samples
+winLenSampl = floor(winLen*sampFreq);
+ovrlpSampl  = floor(ovrlp*sampFreq);
+[S,F,T]     = spectrogram(dataVec, winLenSampl, ovrlpSampl, [], sampFreq);
+
+% Plot spectrogram
+figure;
+imagesc(T, F, abs(S)); axis xy;
+title('Spectrogram of Data');
+xlabel('Time (s)');
+ylabel('Frequency (Hz)');
 
 
 
