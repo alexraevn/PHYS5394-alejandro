@@ -32,9 +32,10 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
 * **lab8_2** -3/26/2021
   - simLIGONoise.m   - Reads iLIGOSensitivity.txt to generate characterization filter, pass it WGN noise, and estimate the resulting PSD.
 
-* **lab9** -4/2/2021
+* **lab9** -4/5/2021
   - SNRcalcMod1.m    - Modified from mohanty-sd/DATASCIENCE_COURSE/DETEST/SNRcalc.m. It uses gensgsig.m and statgaussnoisegen.m to generate several noise and data realizations and get an estimated SNR. Plots data and signal realization, periodogram of data and noise, and spectrogram of data. It also plots the histogram with estimated SNR.
   - SNRcalcMod2.m    - Similar to SNRcalcMod1.m, but uses iLIGOSensitivity.txt as model for PSD.
-
+  - glrtqcsig.m      - Function which computes the glrt value for a quadratic chirp signal by passing it data and PSD vectors and signal parameters.
+  - significance.m   - lorem
 
 Contact alejandro.reyes01@utrgv.edu

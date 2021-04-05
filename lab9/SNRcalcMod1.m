@@ -4,13 +4,26 @@
 % Density (PSD). [We often shorten this statement to say: "Normalize the
 % signal to have a given SNR." ]
 
+% Include functions folder
+addpath ./FUNCTIONS
+
 % This is the target SNR for the LR
 snr = 10;
 
+%% Generate Sine Gaussian Signal
 % Data generation parameters
 nSamples = 2048;
 sampFreq = 1024;
 timeVec = (0:(nSamples-1))/sampFreq;
+
+% Sine Gaussian signal parameters
+time0 = 0.5; % Peak chosen at the center
+stDev = 0.08; 
+freq0 = 30;
+phi0 = pi/2.0;
+% Amplitude value does not matter as it will be changed in the normalization
+A = 1; 
+sigVec = gensgsig(timeVec,A,time0,stDev,freq0,phi0);
 
 %% Use noisePSD inline function to generate the PSD vector 
 % We will use the noise PSD used in colGaussNoiseDemo.m but add a constant

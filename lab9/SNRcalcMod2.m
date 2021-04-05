@@ -4,6 +4,10 @@
 % Density (PSD). [We often shorten this statement to say: "Normalize the
 % signal to have a given SNR." ]
 
+% Include functions folder
+addpath ./FUNCTIONS
+addpath ./DATA
+
 % This is the target SNR for the LR
 snr = 10;
 
