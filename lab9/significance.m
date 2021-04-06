@@ -1,7 +1,7 @@
 %% Calculate significance by Computing GLRT of M data realizations under H0
 
 % number of data realizations to compute
-m = 10;
+m = 50000;
 
 % Include DATA and FUNCTIONS directories
 addpath ./DATA
@@ -40,18 +40,30 @@ psdPosFreq = noisePSD(posFreq);
 %% GLRT of M realizations
 % glrtH0 vector of the GLRT values for m noise realizations
 glrtH0 = zeros(1,m);
+
+% Manually create fir2 filter once to save time
+sqrtPSD = sqrt(psdPosFreq);
+b = fir2(100,posFreq/(sampFreq/2),sqrtPSD);
+
 for r = 1:m % m realizations
-    noiseVec = statgaussnoisegen(nSamples,[posFreq(:),psdPosFreq(:)],100,sampFreq);
+    % Generate WGN realization to pass through filter
+    inNoise = randn(1,nSamples);
+    noiseVec = sqrt(sampFreq)*fftfilt(b,inNoise);
     glrtH0(r) = glrtqcsig(noiseVec,sampFreq,psdPosFreq,parVec);
 end
 
 % Observed GLRT value for data[1,2,3]
-obsGamma1 = glrtqcsig(data1, sampFreq, psdPosFreq, parVec)
-obsGamma2 = glrtqcsig(data2, sampFreq, psdPosFreq, parVec)
-obsGamma3 = glrtqcsig(data3, sampFreq, psdPosFreq, parVec)
+obsGamma1 = glrtqcsig(data1, sampFreq, psdPosFreq, parVec);
+obsGamma2 = glrtqcsig(data2, sampFreq, psdPosFreq, parVec);
+obsGamma3 = glrtqcsig(data3, sampFreq, psdPosFreq, parVec);
 
-% Significance: alpha[1,2,3] = (glrt >= glrt(observed) / number or realizations
+% Significance: alpha[1,2,3] = (glrt >= glrt(observed) ) / number or realizations
 alpha1 = sum(glrtH0>=obsGamma1);
 alpha2 = sum(glrtH0>=obsGamma2);
 alpha3 = sum(glrtH0>=obsGamma3);
 
+% Display results
+disp([num2str(m),' noise realizations compared']);
+disp(['data1 significance = ',num2str(alpha1)]);
+disp(['data2 significance = ',num2str(alpha2)]);
+disp(['data3 significance = ',num2str(alpha3)]);

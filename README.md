@@ -36,6 +36,6 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - SNRcalcMod1.m    - Modified from mohanty-sd/DATASCIENCE_COURSE/DETEST/SNRcalc.m. It uses gensgsig.m and statgaussnoisegen.m to generate several noise and data realizations and get an estimated SNR. Plots data and signal realization, periodogram of data and noise, and spectrogram of data. It also plots the histogram with estimated SNR.
   - SNRcalcMod2.m    - Similar to SNRcalcMod1.m, but uses iLIGOSensitivity.txt as model for PSD.
   - glrtqcsig.m      - Function which computes the glrt value for a quadratic chirp signal by passing it data and PSD vectors and signal parameters.
-  - significance.m   - lorem
+  - significance.m   - Script to compute the significance of GLRT values of 3 datafiles against quadratic chirp signal under null hypothesis. 50000 data realizations computed, but there is no significance stabilization found yet. 
 
 Contact alejandro.reyes01@utrgv.edu
