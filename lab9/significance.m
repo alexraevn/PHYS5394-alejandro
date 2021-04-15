@@ -1,11 +1,12 @@
 %% Calculate significance by Computing GLRT of M data realizations under H0
 
 % number of data realizations to compute
-m = 50000;
+m = 50000;%50000;
 
 % Include DATA and FUNCTIONS directories
 addpath ./DATA
-addpath ./FUNCTIONS
+%addpath ./FUNCTIONS
+
 
 %% Parse data files
 % Read data<n>.txt for n = 1,2,3 (data[1,2,3] from now on)
@@ -58,9 +59,9 @@ obsGamma2 = glrtqcsig(data2, sampFreq, psdPosFreq, parVec);
 obsGamma3 = glrtqcsig(data3, sampFreq, psdPosFreq, parVec);
 
 % Significance: alpha[1,2,3] = (glrt >= glrt(observed) ) / number or realizations
-alpha1 = sum(glrtH0>=obsGamma1);
-alpha2 = sum(glrtH0>=obsGamma2);
-alpha3 = sum(glrtH0>=obsGamma3);
+alpha1 = sum(glrtH0>=obsGamma1)/m;
+alpha2 = sum(glrtH0>=obsGamma2)/m;
+alpha3 = sum(glrtH0>=obsGamma3)/m;
 
 % Display results
 disp([num2str(m),' noise realizations compared']);

@@ -5,7 +5,12 @@
 % signal to have a given SNR." ]
 
 % Include functions folder
-addpath ./FUNCTIONS
+%addpath ./FUNCTIONS
+% SDM **************************
+% Why didn't you addpath to DATASCIENCE_COURSE/DETEST? 
+% As instructed in the lab (slide #2), the codes were provided. 
+addpath ../lab2
+%*******************************
 addpath ./DATA
 
 % This is the target SNR for the LR
@@ -20,7 +25,11 @@ timeVec = (0:(nSamples-1))/sampFreq;
 % Sine Gaussian signal parameters
 time0 = 0.5; % Peak chosen at the center
 stDev = 0.08; 
-freq0 = 20;
+%SDM ******************************
+%We want to look at signals in the sensitive band [50, 700] Hz
+freq0 = 200;
+%***********************************
+%freq0 = 20;
 phi0 = pi/2.0;
 % Amplitude value does not matter as it will be changed in the normalization
 A = 1; 
@@ -59,6 +68,13 @@ kNyq = floor(nSamples/2)+1;
 posFreq = (0:(kNyq-1))*(1/dataLen); % Positive DFT frequencies
 
 psdVals = interp1(LIGOSen(:,1),LIGOSen(:,2),posFreq);
+
+%SDM****************************
+%Both statgaussnoisegen and innerprodpsd (in DATASCIENCE_COURSE) use PSD,
+%not sqrt(PSD), which is what is provided in iLIGOSensitivity.txt). Review
+%the lab where you simulated LIGO noise.
+psdVals = psdVals.^2;
+%*******************************
 
 % figure;
 % loglog(posFreq,psdVals);

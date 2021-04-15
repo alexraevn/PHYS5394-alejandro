@@ -5,7 +5,12 @@
 % signal to have a given SNR." ]
 
 % Include functions folder
-addpath ./FUNCTIONS
+% addpath ./FUNCTIONS
+% SDM **************************
+% Why didn't you addpath to DATASCIENCE_COURSE/DETEST? 
+% As instructed in the lab (slide #2), the codes were provided. 
+addpath ../lab2
+%*******************************
 
 % This is the target SNR for the LR
 snr = 10;
