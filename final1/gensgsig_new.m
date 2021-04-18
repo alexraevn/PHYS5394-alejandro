@@ -1,4 +1,4 @@
-function sigVec = genSGSig_new(dataX,snr,P)
+function sigVec = gensgsig_new(dataX,snr,P)
 % Generate a sine-gaussian signal
 % S = GENSGSIG(X,SNR,P)
 % Generates a sine-gaussian signal S.
