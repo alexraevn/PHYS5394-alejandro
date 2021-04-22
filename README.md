@@ -43,4 +43,9 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - test_gensgsig_new.m - Tests gensgsig_new and plots a time series of the signal and a periodogram.
   - test_snrplot.m   - Uses a function handle to elegantly call gensgsig_new multiple times using various snr values.
 
+* **final2** -4/22/2021
+  - crcbpso_griewank.m - Function to get fitness value using Griewank function.
+  - test_crcbpso_griewank.m - Feeds crcbpso_griewank as a handle to crcbpso. Computes the best PSO fitness values of many iterations.
+  - [not graded] plot_benchmark - Benchmark function testbed which produces surface plots.
+
 Contact alejandro.reyes01@utrgv.edu
