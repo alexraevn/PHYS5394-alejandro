@@ -45,7 +45,8 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
 
 * **final2** -4/22/2021
   - crcbpso_griewank.m - Function to get fitness value using Griewank function.
-  - test_crcbpso_griewank.m - Feeds crcbpso_griewank as a handle to crcbpso. Computes the best PSO fitness values of many iterations.
-  - [not graded] plot_benchmark - Benchmark function testbed which produces surface plots.
+  - test_crcbpso_griewank.m - Feeds crcbpso_griewank as a handle to crcbpso. Computes the best PSO fitness values for multiple iterations, particles, and steps.
+    - [tests] Datafiles from tests and a benchmark function testbed which produces surface plots.
+    - [report] Pdf of report and latex files.
 
 Contact alejandro.reyes01@utrgv.edu

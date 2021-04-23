@@ -7,8 +7,8 @@ ffparams = struct('rmin',-600,...
 fitFuncHandle = @(x) crcbpso_griewank(x,ffparams);
 %%
 % Define structure P for customizing crcbpso
-P = struct('popSize',[],...
-           'maxSteps',[],...
+P = struct('popSize',80,... % Number of particles
+           'maxSteps',3750,... % Number of steps
            'boundaryCond',[],...
            'nbrhdSz',[]...
           );
@@ -16,19 +16,19 @@ P = struct('popSize',[],...
 nDim = 30;
 
 % Reset rng seed
-rng('default')
+% rng('default')
 
-
-%% Set up multiple iterations
+%% Run multiple crcbpso
 
 % Number of pso trials
-trials = 4;
+trials = 72; % Low number of trials which yields precise results
+% Define empty arrays of locations / fitnesses
 bestLocations = zeros(trials,nDim); % Vector of best standard coordinates
 bestFitnesses = zeros(trials,1); % Vector of best fitness values
 
-% parpool(4);
-
-for n = 1:trials
+% Use Parallel Computing Toolbox parfor loop
+% Set up number of workers using parloop(n)
+parfor n = 1:trials
     % Call crcbpso
     psoOut = crcbpso(fitFuncHandle,nDim,P);
     % Append coord and fitness from psoOut
@@ -42,11 +42,21 @@ end
 % Ultimate location in real coordinates
 [~,ultLocation] = fitFuncHandle(bestLocations(ultIndex,:));
 
-%% Display
-disp(['Best location:',num2str(ultLocation)]);
-disp(['Best fitness:', num2str(ultFitness)]);
-%% Estimated parameters
-% Best standardized and real coordinates found.
-% stdCoord = psoOut.bestLocation;
-% [~,realCoord] = fitFuncHandle(stdCoord);
+%% Run information
+% Average fitness found in all trials
+avgFitness = mean(bestFitnesses);
+% Standard deviation
+stdFitness = std(bestFitnesses);
 
+% particles = P.popSize
+steps = P.maxSteps
+
+%% Display
+disp('%========%')
+% disp([num2str(trials), ' trials, 40 particles, 2000 steps']) % Trial run
+% disp([num2str(particles), ' particles, 72 trials, 2000 steps']) % Particle run
+disp([num2str(steps), ' steps, 40 particles, 72 trials'])
+disp(['Best fitness:', num2str(ultFitness)]);
+disp(['Average fitness:', num2str(avgFitness)]);
+disp(['Standard deviation:', num2str(stdFitness)]);
+disp('%========%')
