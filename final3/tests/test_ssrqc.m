@@ -32,8 +32,7 @@ params = struct('dataX',xVec,...
                 'psdVec',psdVec,...
                 'snr',snr);
 
-llr = glrtqcsig(dataY, samplFreq, psdVec, x);
-
+llr = glrtqcsig(dataY, samplFreq, psdVec, x); %Nan?
 ssr = ssrqc(x,params);
 
 function ssrVal = ssrqc(x,params)
