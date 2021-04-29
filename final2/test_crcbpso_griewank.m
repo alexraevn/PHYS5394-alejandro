@@ -7,8 +7,8 @@ ffparams = struct('rmin',-600,...
 fitFuncHandle = @(x) crcbpso_griewank(x,ffparams);
 %%
 % Define structure P for customizing crcbpso
-P = struct('popSize',80,... % Number of particles
-           'maxSteps',3750,... % Number of steps
+P = struct('popSize',40,... % Number of particles
+           'maxSteps',4000,... % Number of steps
            'boundaryCond',[],...
            'nbrhdSz',[]...
           );
@@ -21,7 +21,7 @@ nDim = 30;
 %% Run multiple crcbpso
 
 % Number of pso trials
-trials = 72; % Low number of trials which yields precise results
+trials = 6; % Low number of trials which yields precise results
 % Define empty arrays of locations / fitnesses
 bestLocations = zeros(trials,nDim); % Vector of best standard coordinates
 bestFitnesses = zeros(trials,1); % Vector of best fitness values
@@ -55,7 +55,7 @@ steps = P.maxSteps
 disp('%========%')
 % disp([num2str(trials), ' trials, 40 particles, 2000 steps']) % Trial run
 % disp([num2str(particles), ' particles, 72 trials, 2000 steps']) % Particle run
-disp([num2str(steps), ' steps, 40 particles, 72 trials'])
+disp([num2str(steps), ' steps,', num2str(P.popSize),' particles,',num2str(trials),' trials'])
 disp(['Best fitness:', num2str(ultFitness)]);
 disp(['Average fitness:', num2str(avgFitness)]);
 disp(['Standard deviation:', num2str(stdFitness)]);
