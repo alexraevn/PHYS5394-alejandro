@@ -7,9 +7,9 @@ a1 = [1,10];
 a2 = [-5,0.5];
 a3 = [-50,50];
 % step size
-da = 0.1;
+da = 0.03;
 % set the snr
-snr = 10;
+snr = 4;
 
 %% Create data realization of colored Gaussian noise and qc
 % set up time
@@ -30,7 +30,7 @@ psdVec = tPSD(posFreq);
 
 % generate colored noise
 filtOrdr = 100;
-rng('default');
+% rng('default');
 noiseVec = statgaussnoisegen(nSamples,[posFreq(:),psdVec(:)],filtOrdr,samplFreq);
 
 % generate qc and normalize to snr
@@ -90,7 +90,7 @@ plot(A,glrts,'-p','MarkerIndices',[idmin],'MarkerFaceColor','red','MarkerSize',1
 title('Fitness Values vs QC Parameter Range');
 xlabel('Parameter Value a1');
 ylabel('Fitness Value (-GLRT)');
-legend({'Minimum at a1 = 2'},'Location','southeast');
+legend({['Minimum at a1 = ',num2str(A(idmin))]},'Location','southeast');
 
 % %% Set up crcbpso
 % % define glrtqcsig4pso parameter structure
