@@ -35,7 +35,7 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
 * **lab9** -4/5/2021
   - SNRcalcMod1.m    - Modified from mohanty-sd/DATASCIENCE_COURSE/DETEST/SNRcalc.m. It uses gensgsig.m and statgaussnoisegen.m to generate several noise and data realizations and get an estimated SNR. Plots data and signal realization, periodogram of data and noise, and spectrogram of data. It also plots the histogram with estimated SNR.
   - SNRcalcMod2.m    - Similar to SNRcalcMod1.m, but uses iLIGOSensitivity.txt as model for PSD.
-  - glrtqcsig.m      - Function which computes the glrt value for a quadratic chirp signal by passing it data and PSD vectors and signal parameters.
+  - glrtqcsig.m      - Function which computes the GLRT value for a quadratic chirp signal by passing it data and PSD vectors and signal parameters.
   - significance.m   - Script to compute the significance of GLRT values of 3 datafiles against quadratic chirp signal under null hypothesis. 50000 data realizations computed.
 
 * **final1** -4/14/2021
@@ -48,5 +48,14 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - test_crcbpso_griewank.m - Feeds crcbpso_griewank as a handle to crcbpso. Computes the best PSO fitness values for multiple iterations, particles, and steps.
     - [tests] Datafiles from tests and a benchmark function testbed which produces surface plots.
     - [report] Pdf of report and latex files.
+
+* **final3** -4/29/2021
+  - glrtqc4pso - Modified glrtqc to map into crcbpso.
+  - test_glrtqc4pso - Tested the iterative GLRT computation.
+    - [tests] Testing of the ssrqc function in glrtqc4pso.
+
+* **final4** -5/3/2021
+  - glrtqcpso.m - Modified crcbqcpso to ingest glrtqc4pso. Computes GLRT of quadratic chirp coefficients within given range in colored gaussian noise by PSO.
+  - test_glrtqcpso - Harness to compute QC coefficients using PSO.
 
 Contact alejandro.reyes01@utrgv.edu
