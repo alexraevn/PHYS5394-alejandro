@@ -76,12 +76,13 @@ params = struct('dataX',dataX,...
                 'rmin',[a1(1),a2(1),a3(1)],...
                 'rmax',[a1(2),a2(2),a3(2)]);
 % data allocation for fitness values
-glrts = ones(1,nRows);
-
-for n = 1:nRows
-    % compute fitness
-    glrts(n) = glrtqcsig4pso(mm(n,:),params);
-end
+% glrts = ones(1,nRows);
+% 
+% for n = 1:nRows
+%     % compute fitness
+%     glrts(n) = glrtqcsig4pso(mm(n,:),params);
+% end
+glrts = glrtqcsig4pso(mm,params);
 
 idmin = find(glrts == min(glrts));
 
