@@ -58,4 +58,7 @@ This repository contains classwork for *Statistical Methods*, PHYS 5394.
   - glrtqcpso.m - Modified crcbqcpso to ingest glrtqc4pso. Computes GLRT of quadratic chirp coefficients within given range in colored gaussian noise by PSO.
   - test_glrtqcpso - Harness to compute QC coefficients using PSO.
 
+* **mdc** -5/9/2021
+  - mdc.m - GLRT, significance, and qc parameter estimation by PSO of mock data.
+
 Contact alejandro.reyes01@utrgv.edu
