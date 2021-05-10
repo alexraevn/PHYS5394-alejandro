@@ -16,7 +16,10 @@ dataLen = nSamples/sampFreq;
 dataX = (0:(nSamples-1))/sampFreq;
 
 % estimate PSD
-[pxx,posFreq] = pwelch(dTrain, 80,[],[],sampFreq);
+%SDM************
+%[pxx,posFreq] = pwelch(dTrain, 80,[],[],sampFreq);
+[pxx,posFreq] = pwelch(dTrain, 1024,[],[],sampFreq);
+%***************
 % interpolate psd and freq vec to get length 1024
 psdVec = interp1(1:length(pxx),pxx,linspace(1,length(pxx),1025),'cubic');
 posFreq = interp1(1:length(posFreq),posFreq,linspace(1,length(posFreq),1025),'linear');
